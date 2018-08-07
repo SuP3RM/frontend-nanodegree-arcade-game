@@ -1,7 +1,5 @@
 Udacity Arcade Game! (aka Frogger remake)
 =========================================
-
-==============
 -Instructions-
 ==============
 
