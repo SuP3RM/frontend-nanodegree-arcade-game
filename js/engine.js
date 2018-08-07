@@ -26,14 +26,39 @@ var Engine = (function(global) {
         id;
 
     const modal = document.querySelector('.modal__background');
-    const replay = document.querySelector('.modal_replay');
+    const replay = document.querySelector('.modal_replay').addEventListener('click', init);
 
+    /*
     replay.addEventListener('click', function() {
       modal.classList.toggle('hide');
       player.reset();
       player.winning = false;
       win.requestAnimationFrame(main);
     })
+    */
+
+    // toggles the modals when called
+    function toggleModal() {
+      let modal = document.querySelector('.modal__background');
+      modal.classList.toggle('hide');
+    }
+
+    // displys time in modal
+    function displayTime() {
+      time = watch.getTimeString();
+      return time;
+    }
+
+    // Generating game stats (Modal)
+    function writeModalStats() {
+      let timeStat = document.querySelector('.modal_time');
+      let clockTime = displayTime();
+
+      timeStat.innerHTML = `Time = ${clockTime}`;
+    }
+
+    // cancel button
+    document.querySelector('.modal_exit').addEventListener('click', toggleModal);
 
     canvas.width = 505;
     canvas.height = 606;
@@ -70,7 +95,9 @@ var Engine = (function(global) {
         if (player.winning === true) {
           win.cancelAnimationFrame(id);
           console.log("Game Over!");
-          modal.classList.toggle('hide');
+          watch.stopTimer();
+          toggleModal();
+          writeModalStats();
         }
         else {
           id = win.requestAnimationFrame(main);
@@ -181,7 +208,8 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+      // noop
+      player.reset
     }
 
     /* Go ahead and load all of the images we know we're going to need to

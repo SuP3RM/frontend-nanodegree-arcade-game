@@ -10,11 +10,35 @@ body {
   height: 100%;
   background: rgba(0, 0, 0, 0.438);
 }
+
+.modal_body {
+  position: relative;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+  background: #ffffff;
+  transform: translate(-50%, -70%);
+  color: black;
+}
+
 .modal_heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 1.5rem;
+  border-bottom: 1px solid gold;
+}
+
+.modal_cheer {
+  font-weight: bold;
+  font-size: 2rem
+}
+
+.modal_stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
   border-bottom: 1px solid gold;
 }
 
@@ -27,7 +51,6 @@ body {
 .modal_button {
   width: 60px;
   height: 30px;
-  align-items: center;
 }
 
 .hide {

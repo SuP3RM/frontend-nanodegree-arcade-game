@@ -1,5 +1,5 @@
-References: https://matthewcranford.com/arcade-game-walkthrough-part-6-collisions-win-conditions-and-game-resets/
-https://www.youtube.com/watch?v=JcQYGbg0IkQ
+// References: https://matthewcranford.com/arcade-game-walkthrough-part-6-collisions-win-conditions-and-game-resets/
+// https://www.youtube.com/watch?v=JcQYGbg0IkQ
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
@@ -128,9 +128,9 @@ class Hero {
 // Place the player object in a variable called player
 
 const player = new Hero();
-const bug1 = new Enemy(-101, 0, 100);
-const bug2 = new Enemy(-101, 83, 200);
-const bug3 = new Enemy((-101 * 2.5), 83, 200);
+const bug1 = new Enemy(-101, 0, 200);
+const bug2 = new Enemy(-101, 83, 300);
+const bug3 = new Enemy((-101 * 2.5), 83, 300);
 
 let allEnemies = [];
 allEnemies.push(bug1, bug2, bug3);
@@ -147,3 +147,80 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+//clock/timer
+let StopWatch = function StopWatch() {
+  const self = this;
+
+  let hours = 0;
+  let minutes = 0;
+  let seconds = 0;
+
+  let timer;
+  let on = false;
+
+  self.startTimer = function(callback) {
+    if (on === true) {
+      return;
+    }
+    on = true;
+    timer = setInterval(function() {
+      seconds++;
+      if (seconds === 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes === 60) {
+          minutes = 0;
+          hours++;
+        }
+      }
+      if (callback && callback.constructor === Function) {
+        callback();
+      }
+    }, 1000);
+    console.log('timer started');
+  }
+
+  self.stopTimer = function() {
+    clearInterval(timer);
+    on = false;
+    console.log('timer ended: ', self.getTimeString());
+  }
+
+  self.resetTimer = function() {
+    self.stopTimer();
+    hours = 0;
+    minutes = 0;
+    seconds = 0;
+  }
+
+  self.getTimeString = function() {
+    let hour = hours > 9 ? String(hours) : '0' + String(hours);
+    let minute = minutes > 9 ? String(minutes) : '0' + String(minutes);
+    let second = seconds > 9 ? String(seconds) : '0' + String(seconds);
+    let timeString = hour + ':' + minute + ':' + second;
+    return timeString;
+  }
+
+  self.getHours = function() {
+    return hours;
+  }
+
+  self.getMinutes = function() {
+    return minutes;
+  }
+
+  self.getSeconds = function() {
+    return seconds;
+  }
+}
+
+let watch = new StopWatch();
+let timerText = document.querySelector('.timer');
+
+function displayOnScreen() {
+  watch.startTimer(function() {
+    timerText.innerHTML = watch.getTimeString();
+  });
+}
+displayOnScreen();
