@@ -1,3 +1,5 @@
+References: https://matthewcranford.com/arcade-game-walkthrough-part-6-collisions-win-conditions-and-game-resets/
+https://www.youtube.com/watch?v=JcQYGbg0IkQ
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
