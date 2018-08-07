@@ -23,10 +23,8 @@ var Engine = (function(global) {
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime,
-        id;
+        id = win.requestAnimationFrame(main);
 
-    const modal = document.querySelector('.modal__background');
-    const replay = document.querySelector('.modal_replay').addEventListener('click', init);
 
     /*
     replay.addEventListener('click', function() {
@@ -59,6 +57,8 @@ var Engine = (function(global) {
 
     // cancel button
     document.querySelector('.modal_exit').addEventListener('click', toggleModal);
+    // reset button
+    document.querySelector('.modal_replay').addEventListener('click', init);
 
     canvas.width = 505;
     canvas.height = 606;
@@ -93,11 +93,11 @@ var Engine = (function(global) {
          */
 
         if (player.winning === true) {
-          win.cancelAnimationFrame(id);
           console.log("Game Over!");
           watch.stopTimer();
           toggleModal();
           writeModalStats();
+          win.cancelAnimationFrame(id);
         }
         else {
           id = win.requestAnimationFrame(main);
@@ -209,7 +209,7 @@ var Engine = (function(global) {
      */
     function reset() {
       // noop
-      player.reset
+      player.reset();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
