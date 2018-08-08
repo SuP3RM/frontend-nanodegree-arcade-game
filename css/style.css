@@ -29,6 +29,10 @@ body {
   border-bottom: 1px solid gold;
 }
 
+.modal_title {
+  font-weight: bold;
+  font-size: 2rem
+}
 .modal_cheer {
   font-weight: bold;
   font-size: 2rem
