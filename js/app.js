@@ -1,5 +1,7 @@
-// References: https://matthewcranford.com/arcade-game-walkthrough-part-6-collisions-win-conditions-and-game-resets/
-// https://www.youtube.com/watch?v=JcQYGbg0IkQ
+/* References:
+Credit to Matthew Crawford for an awesome walkthrough https://matthewcranford.com/arcade-game-walkthrough-part-6-collisions-win-conditions-and-game-resets/
+Overview help: https://www.youtube.com/watch?v=JcQYGbg0IkQ
+*/
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
@@ -38,26 +40,6 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
-// Hero class
-// Constrctor
-// properties
-// x position
-// y position
-// sprite
-
-//methods
-// update position
-// check collision here
-// did player x and y collide with enemy?
-// check win here?
-// did player x and y reach final title?
-// Render
-// Draw player sprite on current x and y coord position
-// handle keyboard handleInput
-// update player's x and y property according to input
-// Reset hero
-// set x and y to starting x and y
 
 class Hero {
   constructor() {
@@ -222,6 +204,7 @@ let StopWatch = function StopWatch() {
 let watch = new StopWatch();
 let timerText = document.querySelector('.timer');
 
+// displays timer on screen
 function displayOnScreen() {
   watch.startTimer(function() {
     timerText.innerHTML = watch.getTimeString();
